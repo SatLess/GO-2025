@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnkhhkobda326"]
+
+[ext_resource type="Script" uid="uid://rvxiq1gnlia" path="res://player.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://00tbg5nfb38j" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://io6yc71je7s2" path="res://interactable.tscn" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://6g64diiil36d" path="res://dialogue_box.gd" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(49, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(58, 20)
+
+[sub_resource type="GDScript" id="GDScript_1bvp3"]
+script/source = "extends Node2D
+@onready var interactable: Interactable = $Interactable
+
+func _ready() -> void:
+	interactable.interact = func():
+		DialogueBox.instance.current_lines = [\"Oi\",\"eU SOU GAY\", \"E quero morrer\"]
+		DialogueBox.instance.startDialogue(\"\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(40, 50)
+
+[node name="Main" type="Node2D" unique_id=621335906]
+
+[node name="Level" type="Node2D" parent="." unique_id=186496640]
+
+[node name="Player" type="CharacterBody2D" parent="Level" unique_id=1130110741]
+script = ExtResource("1_0xm2m")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Level/Player" unique_id=526297419]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player" unique_id=677039894]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Raycast" type="Area2D" parent="Level/Player" unique_id=491229047]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player/Raycast" unique_id=41631709]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="YAOI" type="Node2D" parent="Level" unique_id=1534376364]
+script = SubResource("GDScript_1bvp3")
+
+[node name="Interactable" parent="Level/YAOI" unique_id=2130865326 instance=ExtResource("3_1bvp3")]
+position = Vector2(280, 87)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="Level/YAOI/Interactable" index="0" unique_id=154934414]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1330254562]
+
+[node name="DialogueBox" type="ColorRect" parent="UI" unique_id=51483455]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -159.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.08544831, 0.4103766, 0.475365, 1)
+script = ExtResource("3_h2yge")
+current_lines = Array[String](["You're such a mecdownalds", "Download songs now", "I need to stop fixing stuff"])
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/DialogueBox" unique_id=1044811653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "YAOOOOOOOOOIIIIIIII"
+
+[editable path="Level/YAOI/Interactable"]
