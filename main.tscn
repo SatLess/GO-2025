@@ -24,7 +24,7 @@ func _ready() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(40, 50)
 
-[node name="Main" type="Node2D" unique_id=621335906]
+[node name="Main" type="Node" unique_id=1377923141]
 
 [node name="Level" type="Node2D" parent="." unique_id=186496640]
 
@@ -59,6 +59,7 @@ shape = SubResource("RectangleShape2D_lquwl")
 [node name="UI" type="CanvasLayer" parent="." unique_id=1330254562]
 
 [node name="DialogueBox" type="ColorRect" parent="UI" unique_id=51483455]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

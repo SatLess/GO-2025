@@ -4,8 +4,8 @@ extends ColorRect
 @onready var label: RichTextLabel = $RichTextLabel
 @export var current_lines: Array[String]
 static var instance: DialogueBox # Mimic Singleton Without making the Ui one and using getter there
-var idx = 0
-var finished := false
+var idx := 0
+var finished := true
 
 ## Parses Dialogue Keys
 func set_dialogue(dialogue_path: String):
@@ -13,14 +13,14 @@ func set_dialogue(dialogue_path: String):
 	pass
 
 func startDialogue(dialogue_path: String):
-	idx = 0
 	finished = false
-	#current_lines.clear()
 	show()
 	_advanceDialogue()
 
 func _endDialogue():
 	finished = true
+	idx = 0
+	current_lines.clear()
 	hide()
 
 func _advanceDialogue():
@@ -37,6 +37,3 @@ func _input(event: InputEvent) -> void:
 
 func _init() -> void:
 	instance = self
-
-func _ready() -> void:
-	startDialogue("")
