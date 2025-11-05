@@ -31,7 +31,7 @@ func _advanceDialogue():
 	idx += 1
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept") and not finished:
+	if Input.is_action_just_pressed("interact") and not finished:
 		_advanceDialogue()
 		get_viewport().set_input_as_handled()
 
